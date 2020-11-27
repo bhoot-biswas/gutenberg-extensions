@@ -44,10 +44,10 @@ final class Gutenberg_Extensions {
 
 	/**
 	 * Include required core files used in admin and on the frontend.
-	 * e.g. include_once JOB_SALARY_ABSPATH . 'includes/foo.php';
+	 * e.g. include_once GUTENBERG_EXTENSIONS_PLUGIN_DIR . 'includes/foo.php';
 	 */
 	private function includes() {
-		include_once JOB_SALARY_PLUGIN_DIR . '/includes/util.php';
+		include_once GUTENBERG_EXTENSIONS_PLUGIN_DIR . '/includes/util.php';
 	}
 
 	/**
