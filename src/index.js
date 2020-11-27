@@ -26,7 +26,7 @@ const enableDisplayControlOnBlocks = ["core/paragraph", "core/image"];
 const addDisplayControlAttribute = (settings, name) => {
 	// Do nothing if it's another block than our defined ones.
 	if (!enableDisplayControlOnBlocks.includes(name)) {
-		return settings;
+		// return settings;
 	}
 
 	return {
@@ -48,7 +48,7 @@ const addDisplayControlAttribute = (settings, name) => {
 const withDisplayControl = createHigherOrderComponent(BlockEdit => {
 	return props => {
 		if (!enableDisplayControlOnBlocks.includes(props.name)) {
-			return <BlockEdit {...props} />;
+			// return <BlockEdit {...props} />;
 		}
 
 		const {hideOnMobile} = props.attributes;
@@ -87,7 +87,7 @@ const withDisplayControl = createHigherOrderComponent(BlockEdit => {
  */
 const addDisplayExtraProps = (props, blockType, attributes) => {
 	if (!enableDisplayControlOnBlocks.includes(blockType.name)) {
-		return props;
+		// return props;
 	}
 
 	return {
