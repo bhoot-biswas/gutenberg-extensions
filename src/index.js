@@ -50,7 +50,9 @@ const withDisplayControl = createHigherOrderComponent(BlockEdit => {
 							label={__("Hide on mobile")}
 							checked={!!hideOnMobile}
 							onChange={() =>
-								props.setAttributes({hideOnMobile: !hideOnMobile})
+								props.setAttributes({
+									hideOnMobile: !hideOnMobile
+								})
 							}
 							help={
 								hideOnMobile
@@ -65,6 +67,15 @@ const withDisplayControl = createHigherOrderComponent(BlockEdit => {
 	};
 }, "withDisplayControl");
 
+const addDisplayExtraProps = (props, blockType, attributes) => {
+	if (!enableDisplayControlOnBlocks.includes(blockType.name)) {
+		return props;
+	}
+
+	return {};
+};
+
+// Filters.
 addFilter(
 	"blocks.registerBlockType",
 	"gutenberg-extensions/attribute/display",
@@ -75,4 +86,10 @@ addFilter(
 	"editor.BlockEdit",
 	"gutenberg-extensions/with-display-control",
 	withDisplayControl
+);
+
+addFilter(
+	"blocks.getSaveContent.extraProps",
+	"gutenberg-extensions/get-save-content/extra-props",
+	addDisplayExtraProps
 );

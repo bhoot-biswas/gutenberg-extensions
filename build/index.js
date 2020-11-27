@@ -197,8 +197,19 @@ var withDisplayControl = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__[
     }))));
   };
 }, "withDisplayControl");
+
+var addDisplayExtraProps = function addDisplayExtraProps(props, blockType, attributes) {
+  if (!enableDisplayControlOnBlocks.includes(blockType.name)) {
+    return props;
+  }
+
+  return {};
+}; // Filters.
+
+
 Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__["addFilter"])("blocks.registerBlockType", "gutenberg-extensions/attribute/display", addDisplayControlAttribute);
 Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__["addFilter"])("editor.BlockEdit", "gutenberg-extensions/with-display-control", withDisplayControl);
+Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__["addFilter"])("blocks.getSaveContent.extraProps", "gutenberg-extensions/get-save-content/extra-props", addDisplayExtraProps);
 
 /***/ }),
 
