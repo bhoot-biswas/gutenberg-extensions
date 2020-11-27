@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:     Gutenberg Extensions
+ * Plugin Name:     Extensions for Gutenberg
  * Plugin URI:      PLUGIN SITE HERE
  * Description:     PLUGIN DESCRIPTION HERE
  * Author:          YOUR NAME HERE
@@ -12,4 +12,15 @@
  * @package         Gutenberg_Extensions
  */
 
-// Your code starts here.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+// Define constants.
+define( 'GUTENBERG_EXTENSIONS_VERSION', '0.1.0' );
+define( 'GUTENBERG_EXTENSIONS_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+define( 'GUTENBERG_EXTENSIONS_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
+define( 'GUTENBERG_EXTENSIONS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+
+// Require the main Gutenberg_Extensions class.
+require_once dirname( __FILE__ ) . '/includes/class-gutenberg-extensions.php';
