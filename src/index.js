@@ -12,14 +12,14 @@ import {InspectorControls} from "@wordpress/block-editor";
 import {createHigherOrderComponent} from "@wordpress/compose";
 import {addFilter} from "@wordpress/hooks";
 
-/**
- * [enableDisplayControlOnBlocks description]
- * @type {Array}
- */
+// Styles.
+import "./scss/index.scss";
+
+// Define constants.
 const enableDisplayControlOnBlocks = ["core/paragraph", "core/image"];
 
 /**
- * [addDisplayControlAttribute description]
+ * Filter attributes.
  * @param {[type]} settings [description]
  * @param {[type]} name     [description]
  */
@@ -42,7 +42,7 @@ const addDisplayControlAttribute = (settings, name) => {
 };
 
 /**
- * [withDisplayControl description]
+ * Filter BlockEdit.
  * @type {[type]}
  */
 const withDisplayControl = createHigherOrderComponent(BlockEdit => {
@@ -80,7 +80,7 @@ const withDisplayControl = createHigherOrderComponent(BlockEdit => {
 }, "withDisplayControl");
 
 /**
- * [addDisplayExtraProps description]
+ * Filter props.
  * @param {[type]} props      [description]
  * @param {[type]} blockType  [description]
  * @param {[type]} attributes [description]
