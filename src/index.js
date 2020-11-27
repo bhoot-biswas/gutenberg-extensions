@@ -57,7 +57,7 @@ const withDisplayControl = createHigherOrderComponent(BlockEdit => {
 			<>
 				<BlockEdit {...props} />
 				<InspectorControls>
-					<PanelBody title={__("Display")}>
+					<PanelBody title={__("Display settings")}>
 						<ToggleControl
 							label={__("Hide on mobile")}
 							checked={!!hideOnMobile}
