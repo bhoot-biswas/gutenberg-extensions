@@ -55,5 +55,19 @@ final class Gutenberg_Extensions {
 	 * @return [type] [description]
 	 */
 	private  function init() {
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
+	}
+
+	/**
+	 * Enqueue block editor assets.
+	 * @return [type] [description]
+	 */
+	public function enqueue_block_editor_assets() {
+		wp_enqueue_script(
+			'gutenberg-extensions',
+			GUTENBERG_EXTENSIONS_PLUGIN_URL . '/build/index.js',
+			$asset_file['dependencies'],
+			$asset_file['version']
+		);
 	}
 }
