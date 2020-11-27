@@ -5,6 +5,7 @@ import {__, _x} from "@wordpress/i18n";
 import {PanelBody, ToggleControl} from "@wordpress/components";
 import {InspectorControls} from "@wordpress/block-editor";
 import {createHigherOrderComponent} from "@wordpress/compose";
+import {addFilter} from "@wordpress/hooks";
 
 const enableDisplayControlOnBlocks = ["core/paragraph", "core/image"];
 
@@ -41,7 +42,7 @@ const withDisplayControl = createHigherOrderComponent(BlockEdit => {
 		const {hideOnMobile} = props.attributes;
 
 		return (
-			<Fragment>
+			<>
 				<BlockEdit {...props} />
 				<InspectorControls>
 					<PanelBody title={__("Display")}>
@@ -49,7 +50,7 @@ const withDisplayControl = createHigherOrderComponent(BlockEdit => {
 							label={__("Hide on mobile")}
 							checked={!!hideOnMobile}
 							onChange={() =>
-								setAttributes({hideOnMobile: !hideOnMobile})
+								props.setAttributes({hideOnMobile: !hideOnMobile})
 							}
 							help={
 								hideOnMobile
@@ -59,7 +60,7 @@ const withDisplayControl = createHigherOrderComponent(BlockEdit => {
 						/>
 					</PanelBody>
 				</InspectorControls>
-			</Fragment>
+			</>
 		);
 	};
 }, "withDisplayControl");
@@ -68,4 +69,10 @@ addFilter(
 	"blocks.registerBlockType",
 	"gutenberg-extensions/attribute/display",
 	addDisplayControlAttribute
+);
+
+addFilter(
+	"editor.BlockEdit",
+	"gutenberg-extensions/with-display-control",
+	withDisplayControl
 );
