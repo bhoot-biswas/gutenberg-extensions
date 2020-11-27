@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from "classnames";
+
+/**
  * WordPress dependencies
  */
 import {__, _x} from "@wordpress/i18n";
@@ -7,6 +12,10 @@ import {InspectorControls} from "@wordpress/block-editor";
 import {createHigherOrderComponent} from "@wordpress/compose";
 import {addFilter} from "@wordpress/hooks";
 
+/**
+ * [enableDisplayControlOnBlocks description]
+ * @type {Array}
+ */
 const enableDisplayControlOnBlocks = ["core/paragraph", "core/image"];
 
 /**
@@ -22,9 +31,12 @@ const addDisplayControlAttribute = (settings, name) => {
 
 	return {
 		...settings,
-		hideOnMobile: {
-			type: "boolean",
-			default: false
+		attributes: {
+			...settings.attributes,
+			hideOnMobile: {
+				type: "boolean",
+				default: false
+			}
 		}
 	};
 };
@@ -67,12 +79,26 @@ const withDisplayControl = createHigherOrderComponent(BlockEdit => {
 	};
 }, "withDisplayControl");
 
+/**
+ * [addDisplayExtraProps description]
+ * @param {[type]} props      [description]
+ * @param {[type]} blockType  [description]
+ * @param {[type]} attributes [description]
+ */
 const addDisplayExtraProps = (props, blockType, attributes) => {
 	if (!enableDisplayControlOnBlocks.includes(blockType.name)) {
 		return props;
 	}
 
-	return {};
+	return {
+		...props,
+		className: classnames(props.className, {
+			"d-none-mobile":
+				typeof attributes.hideOnMobile !== "undefined" &&
+				attributes.hideOnMobile &&
+				"d-none-mobile" !== props.className
+		})
+	};
 };
 
 // Filters.
