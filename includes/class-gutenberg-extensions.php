@@ -56,6 +56,7 @@ final class Gutenberg_Extensions {
 	 */
 	private  function init() {
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_assets' ] );
 	}
 
 	/**
@@ -69,6 +70,19 @@ final class Gutenberg_Extensions {
 			'gutenberg-extensions',
 			GUTENBERG_EXTENSIONS_PLUGIN_URL . '/build/index.js',
 			$asset_file['dependencies'],
+			$asset_file['version']
+		);
+	}
+
+	/**
+	 * Enqueue block assets.
+	 * @return [type] [description]
+	 */
+	public function enqueue_block_assets() {
+		wp_enqueue_style(
+			'gutenberg-extensions',
+			GUTENBERG_EXTENSIONS_PLUGIN_URL . '/build/index.css',
+			[],
 			$asset_file['version']
 		);
 	}
