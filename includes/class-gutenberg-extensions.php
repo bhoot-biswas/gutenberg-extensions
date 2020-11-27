@@ -79,6 +79,8 @@ final class Gutenberg_Extensions {
 	 * @return [type] [description]
 	 */
 	public function enqueue_block_assets() {
+		$asset_file = include( GUTENBERG_EXTENSIONS_PLUGIN_DIR . '/build/index.asset.php' );
+
 		wp_enqueue_style(
 			'gutenberg-extensions',
 			GUTENBERG_EXTENSIONS_PLUGIN_URL . '/build/index.css',
